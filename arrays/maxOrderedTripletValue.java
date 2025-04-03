@@ -33,3 +33,21 @@ class Solution {
         return max;
     }
 }
+
+//O(n) solution
+// (nums[i]-nums[j])*nums[k] : 
+// nums[i] - nums[j] : should be max.
+// nums[i[ : should be max
+    
+class Solution {
+    public long maximumTripletValue(int[] nums) {
+        long res = 0;
+        long iMax = 0, dMax = 0;
+        for (int i = 0; i < nums.length; i++) {
+            res = Math.max(res, (dMax * nums[i]));
+            dMax = Math.max(dMax, (iMax - nums[i]));
+            iMax = Math.max(iMax, nums[i]);
+        }
+        return res;
+    }
+}
